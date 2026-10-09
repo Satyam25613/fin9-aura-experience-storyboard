@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Internal stakeholder report and storyboard for the Aura client-meeting preparation experience in Fin9.">
+  <title>Aura experience | Internal storyboard report | Fin9 by C3aLabs</title>
+  <style>
+    @font-face{font-family:Geist;src:url("assets/fonts/Geist-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+    @font-face{font-family:Geist;src:url("assets/fonts/Geist-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+    @font-face{font-family:Geist;src:url("assets/fonts/Geist-SemiBold.ttf") format("truetype");font-weight:600;font-display:swap}
+    @font-face{font-family:Geist;src:url("assets/fonts/Geist-Bold.ttf") format("truetype");font-weight:700;font-display:swap}
+    @font-face{font-family:"Geist Mono";src:url("assets/fonts/GeistMono-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+    @font-face{font-family:"Geist Mono";src:url("assets/fonts/GeistMono-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+    :root{
+      --paper:#FFFFFF;--paper-soft:#F7F7F5;--surface:#F1F1EF;--ink-strong:#0A0A0A;--ink:#171717;
+      --muted:#5F5F5F;--soft:#8A8A8A;--rule:#D8D8D5;--rule-strong:#A3A3A0;--on-dark:#F7F7F5;
+      --sans:Geist,Arial,sans-serif;--mono:"Geist Mono",monospace;--r-xs:4px;--r-sm:8px;--r-md:12px;--r-lg:16px;
+      --measure:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55}
+    a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+    a:focus-visible,summary:focus-visible{outline:2px solid var(--ink-strong);outline-offset:4px}
+    img{max-width:100%}
+    .wrap{width:min(var(--measure),calc(100% - 56px));margin-inline:auto}
+    .mono,.eyebrow,.meta,.figure-label,.source-id,.stage-index{font-family:var(--mono);font-size:.72rem;letter-spacing:.045em;text-transform:uppercase}
+    .muted{color:var(--muted)}
+    .topbar{border-bottom:1px solid var(--rule);background:var(--paper)}
+    .topbar-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:16px;min-width:0}
+    .brand img{width:104px;height:auto;display:block}
+    .brand-copy{border-left:1px solid var(--rule);padding-left:16px;display:grid;gap:2px}
+    .brand-copy strong{font-size:.84rem;font-weight:600}
+    .brand-copy span{font-family:var(--mono);font-size:.63rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+    .topbar-note{font-family:var(--mono);font-size:.66rem;letter-spacing:.035em;text-transform:uppercase;color:var(--muted);text-align:right}
+    .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);gap:56px;align-items:center;padding:68px 0 54px}
+    .eyebrow{margin:0 0 16px;color:var(--muted)}
+    h1,h2,h3,h4,p{margin-top:0}
+    h1{max-width:720px;margin-bottom:22px;color:var(--ink-strong);font-size:clamp(2.8rem,5.3vw,5.1rem);line-height:.99;letter-spacing:-.06em;font-weight:600}
+    .hero-deck{max-width:650px;margin-bottom:20px;font-size:1.16rem;line-height:1.5;color:var(--muted)}
+    .hero-figure{margin:0}
+    .hero-figure img{width:100%;height:380px;object-fit:cover;object-position:62% 48%;display:block;border-radius:var(--r-md)}
+    figcaption{margin-top:9px;font-size:.72rem;color:var(--muted)}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:8px 24px;border-top:1px solid var(--rule);margin-top:30px;padding-top:16px;color:var(--muted);font-size:.77rem}
+    .hero-meta strong{font-weight:500;color:var(--ink)}
+    .report-nav{display:flex;gap:18px;align-items:center;overflow-x:auto;padding:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);white-space:nowrap;scrollbar-width:thin}
+    .report-nav a{font-family:var(--mono);font-size:.62rem;letter-spacing:.035em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+    .report-nav a:hover{color:var(--ink-strong);text-decoration:underline}
+    .review-band{background:var(--ink-strong);color:var(--on-dark);padding:22px 24px;border-radius:var(--r-sm);display:grid;grid-template-columns:170px 1fr;gap:28px;align-items:center;margin:0 0 52px}
+    .review-band .eyebrow{color:var(--on-dark);opacity:.72;margin:0}
+    .review-band p{font-size:1.1rem;line-height:1.4;margin:0;max-width:900px}
+    .section{padding:58px 0;border-top:1px solid var(--rule)}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);gap:36px;align-items:end;margin-bottom:28px}
+    .section-head .eyebrow{margin-bottom:9px}
+    h2{font-size:clamp(1.85rem,3.2vw,3rem);line-height:1.05;letter-spacing:-.045em;color:var(--ink-strong);font-weight:600;margin-bottom:0;max-width:760px}
+    .section-head > p{font-size:.95rem;line-height:1.5;color:var(--muted);margin:0;max-width:460px}
+    h3{font-size:1.16rem;line-height:1.2;letter-spacing:-.025em;font-weight:600;color:var(--ink-strong);margin-bottom:10px}
+    h4{font-size:.84rem;font-weight:600;color:var(--ink-strong);margin-bottom:8px}
+    .review-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong)}
+    .review-point{padding:18px 22px 20px 0}
+    .review-point + .review-point{border-left:1px solid var(--rule);padding-left:22px}
+    .review-point .stage-index{display:block;color:var(--muted);margin-bottom:10px}
+    .review-point p{font-size:.86rem;color:var(--muted);margin:0;max-width:330px}
+    .review-point strong{color:var(--ink);font-weight:600}
+    .foundation{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;padding:20px 22px;background:var(--paper-soft);border-radius:var(--r-sm);margin-bottom:32px}
+    .foundation .eyebrow{margin:0 0 6px}
+    .foundation h3{margin:0;font-size:1rem}
+    .foundation-items{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .foundation-item{border-left:1px solid var(--rule-strong);padding-left:14px}
+    .foundation-item strong{display:block;font-size:.83rem;color:var(--ink);font-weight:600;margin-bottom:3px}
+    .foundation-item span{display:block;font-size:.74rem;color:var(--muted);line-height:1.45}
+    .journey-phase{margin:28px 0 36px}
+    .phase-title{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:9px;margin-bottom:14px}
+    .phase-title .mono{color:var(--muted)}
+    .phase-title h3{margin:0;font-size:1rem}
+    .journey{list-style:none;counter-reset:journey;padding:0;margin:0;display:grid;gap:0}
+    .journey-five{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .journey-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .journey li{position:relative;padding:0 22px 0 0;min-height:142px}
+    .journey li:not(:last-child)::after{content:"";position:absolute;right:9px;top:14px;width:7px;height:7px;border-top:1px solid var(--ink);border-right:1px solid var(--ink);transform:rotate(45deg)}
+    .journey-number{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--ink);border-radius:50%;font-family:var(--mono);font-size:.7rem;line-height:1;color:var(--ink-strong);margin-bottom:9px}
+    .journey .stage-index{display:block;color:var(--muted);margin-bottom:6px}
+    .journey strong{display:block;font-size:.91rem;color:var(--ink-strong);margin-bottom:4px}
+    .journey span:last-child{display:block;max-width:225px;font-size:.76rem;color:var(--muted);line-height:1.45}
+    .source-note{font-size:.77rem;line-height:1.5;color:var(--muted);border-left:2px solid var(--rule-strong);padding:2px 0 2px 12px;margin:18px 0 0}
+    .diagram{margin:0;border:1px solid var(--rule);border-radius:var(--r-md);padding:24px;background:var(--paper)}
+    .diagram-heading{display:flex;justify-content:space-between;align-items:start;gap:20px;border-bottom:1px solid var(--rule);padding-bottom:16px;margin-bottom:18px}
+    .diagram-heading h3{margin:0 0 4px;font-size:1rem}
+    .diagram-heading p{font-size:.76rem;color:var(--muted);margin:0}
+    .diagram-heading .meta{white-space:nowrap;color:var(--muted)}
+    .flow-row{display:grid;grid-template-columns:minmax(130px,.76fr) 28px minmax(330px,1.7fr) 28px minmax(135px,.82fr) 28px minmax(130px,.78fr);gap:10px;align-items:stretch}
+    .flow-node{min-height:92px;display:flex;flex-direction:column;justify-content:center;padding:13px 14px;border:1px solid var(--rule-strong);border-radius:var(--r-sm);background:var(--paper);font-size:.78rem;line-height:1.35}
+    .flow-node strong{color:var(--ink-strong);font-size:.83rem;font-weight:600;margin-bottom:4px}
+    .flow-node span{color:var(--muted);font-size:.7rem}
+    .flow-node.focal{background:var(--ink-strong);border-color:var(--ink-strong);color:var(--on-dark)}
+    .flow-node.focal strong,.flow-node.focal span{color:var(--on-dark)}
+    .flow-arrow{align-self:center;text-align:center;font-family:var(--mono);font-size:1rem;color:var(--muted)}
+    .parallel-zone{border:1px solid var(--rule-strong);border-radius:var(--r-md);padding:12px;background:var(--paper-soft)}
+    .parallel-zone > header{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin:0 0 10px}
+    .parallel-zone > header strong{font-size:.77rem;color:var(--ink);font-weight:600}
+    .parallel-zone > header span{font-family:var(--mono);font-size:.61rem;text-transform:uppercase;color:var(--muted);text-align:right}
+    .parallel-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .parallel-node{min-height:54px;padding:9px 10px;border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.72rem}
+    .parallel-node strong{font-weight:500;color:var(--ink)}
+    .parallel-node span{font-family:var(--mono);font-size:.58rem;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+    .diagram-caption{font-size:.72rem;color:var(--muted);margin:12px 0 0}
+    .meeting-flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;align-items:center;margin-top:20px;padding-top:18px;border-top:1px solid var(--rule)}
+    .meeting-flow .flow-node{min-height:76px}
+    .meeting-flow .flow-node:last-child{border-style:dashed}
+    .role-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:.78rem}
+    .role-table caption{text-align:left;margin-bottom:10px;font-weight:600;color:var(--ink-strong)}
+    .role-table th,.role-table td{text-align:left;vertical-align:top;padding:11px 12px;border-top:1px solid var(--rule)}
+    .role-table th{font-family:var(--mono);font-size:.63rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:400}
+    .role-table td:first-child{font-weight:600;color:var(--ink);width:22%}
+    .role-table td:nth-child(2){color:var(--muted);width:40%}
+    .role-table td:last-child{color:var(--muted)}
+    .table-wrap{overflow-x:auto}
+    .progress-frame{background:var(--paper-soft);border-radius:var(--r-md);padding:22px}
+    .frame-head{display:flex;justify-content:space-between;align-items:start;gap:18px;padding-bottom:14px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+    .frame-head strong{font-size:.88rem;font-weight:600;color:var(--ink-strong)}
+    .frame-head p{font-size:.71rem;color:var(--muted);margin:3px 0 0}
+    .status-word{font-family:var(--mono);font-size:.62rem;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+    .evidence-list{list-style:none;padding:0;margin:0}
+    .evidence-list li{display:grid;grid-template-columns:minmax(150px,.8fr) minmax(0,2fr) 78px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
+    .evidence-list strong{font-size:.76rem;font-weight:600;color:var(--ink)}
+    .evidence-list p{font-size:.75rem;color:var(--muted);margin:0}
+    .evidence-list .status-word{text-align:right}
+    .concept-label{display:inline-block;margin-top:14px;padding:5px 8px;border:1px solid var(--rule-strong);border-radius:var(--r-xs);font-family:var(--mono);font-size:.6rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+    .compile-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:stretch}
+    .evidence-chain{display:grid;gap:0;align-content:start}
+    .chain-item{display:grid;grid-template-columns:1fr auto;align-items:center;gap:14px;padding:12px 14px;border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--paper);font-size:.77rem}
+    .chain-item + .chain-item{margin-top:8px}
+    .chain-item strong{font-weight:500;color:var(--ink)}
+    .chain-item span{font-family:var(--mono);font-size:.66rem;color:var(--muted);white-space:nowrap}
+    .compile-output{padding:22px;background:var(--ink-strong);color:var(--on-dark);border-radius:var(--r-md);display:flex;flex-direction:column;justify-content:space-between;min-height:240px}
+    .compile-output .mono{color:var(--on-dark);opacity:.72}
+    .compile-output h3{color:var(--on-dark);font-size:1.07rem;margin:12px 0}
+    .compile-output p{font-size:.87rem;color:var(--on-dark);line-height:1.55;margin:0}
+    .compile-output footer{border-top:1px solid var(--rule-strong);margin-top:22px;padding-top:12px;font-family:var(--mono);font-size:.62rem;color:var(--on-dark)}
+    .report-shell{border:1px solid var(--rule-strong);border-radius:var(--r-md);padding:26px;background:var(--paper);max-width:1020px;margin-inline:auto}
+    .report-top{display:flex;justify-content:space-between;align-items:start;gap:18px;border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:17px}
+    .report-top .mono{color:var(--muted);margin:0 0 7px}
+    .report-top h3{font-size:1.15rem;margin:0 0 3px}
+    .report-top p{font-size:.72rem;color:var(--muted);margin:0}
+    .demo-stamp{border:1px solid var(--rule-strong);border-radius:var(--r-xs);padding:6px 8px;font-family:var(--mono);font-size:.61rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);white-space:nowrap}
+    .verdict{font-size:.9rem;line-height:1.5;color:var(--ink);max-width:850px;margin:0 0 22px}
+    .verdict strong{font-weight:600}
+    .report-columns{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);gap:26px}
+    .report-label{font-family:var(--mono);font-size:.64rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+    .bar-list{display:grid;gap:12px;margin-bottom:20px}
+    .bar-row{display:grid;grid-template-columns:95px minmax(60px,1fr) 62px;gap:10px;align-items:center;font-size:.73rem}
+    .bar-row span:first-child{color:var(--muted)}
+    .bar-track{height:9px;background:var(--surface);border-radius:var(--r-xs);overflow:hidden}
+    .bar-fill{height:100%;background:var(--ink-strong);border-radius:var(--r-xs)}
+    .bar-fill.secondary{background:var(--muted)}
+    .bar-row output{font-family:var(--mono);font-size:.68rem;text-align:right;color:var(--ink)}
+    .metric-pairs{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-top:1px solid var(--rule);padding-top:14px}
+    .metric{padding-right:12px}
+    .metric + .metric{border-left:1px solid var(--rule);padding-left:14px}
+    .metric strong{display:block;font-family:var(--mono);font-size:1.15rem;letter-spacing:-.04em;color:var(--ink-strong);margin-bottom:4px}
+    .metric span{display:block;font-size:.7rem;color:var(--muted);line-height:1.4}
+    .report-aside{border-left:1px solid var(--rule);padding-left:20px}
+    .toc-list{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.75rem}
+    .toc-list a{text-decoration:none;color:var(--muted)}
+    .toc-list a:hover{color:var(--ink-strong);text-decoration:underline}
+    .report-priorities{margin-top:18px;border-top:1px solid var(--rule);padding-top:14px}
+    .report-priorities ol{padding-left:20px;margin:0;display:grid;gap:8px;font-size:.74rem;line-height:1.45}
+    .report-priorities li{padding-left:2px}
+    .report-priorities a{font-family:var(--mono);font-size:.66rem}
+    .source-mini{margin-top:18px;border-top:1px solid var(--rule);padding-top:12px;display:grid;gap:6px;font-size:.68rem;color:var(--muted)}
+    .source-mini a{font-family:var(--mono);color:var(--ink)}
+    .risk-missing{margin-top:18px;padding:12px 14px;background:var(--paper-soft);border-left:2px solid var(--rule-strong);font-size:.72rem;color:var(--muted)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+    .split-image{margin:0}
+    .split-image img{width:100%;height:330px;object-fit:cover;display:block;border-radius:var(--r-md)}
+    .split-copy p{font-size:.91rem;color:var(--muted);max-width:520px}
+    .meeting-flow-list{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong)}
+    .meeting-flow-list li{padding:14px 16px 15px 0;position:relative;font-size:.76rem}
+    .meeting-flow-list li + li{padding-left:16px;border-left:1px solid var(--rule)}
+    .meeting-flow-list strong{display:block;font-size:.76rem;color:var(--ink);margin-bottom:4px}
+    .meeting-flow-list span{color:var(--muted);line-height:1.4;display:block}
+    .boundary{margin-top:20px;padding:16px 18px;background:var(--paper-soft);border-radius:var(--r-sm);display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center}
+    .boundary strong{font-size:.82rem;color:var(--ink)}
+    .boundary p{font-size:.78rem;color:var(--muted);margin:0}
+    .next-layout{display:grid;grid-template-columns:.95fr 1.05fr;gap:42px;align-items:center}
+    .next-image{margin:0}
+    .next-image img{width:100%;height:320px;object-fit:cover;object-position:62% 46%;display:block;border-radius:var(--r-md)}
+    .offer{border-left:2px solid var(--ink-strong);padding:8px 0 8px 22px}
+    .offer h3{font-size:clamp(1.5rem,2.5vw,2.3rem);line-height:1.12;max-width:440px;margin:10px 0 16px}
+    .offer-actions{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+    .offer-actions span{display:inline-block;border:1px solid var(--rule-strong);border-radius:var(--r-sm);padding:8px 11px;font-size:.74rem;color:var(--ink)}
+    .offer-actions .primary{background:var(--ink-strong);border-color:var(--ink-strong);color:var(--on-dark)}
+    .offer-note{font-size:.7rem;color:var(--muted);margin:0}
+    .data-callout{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start;padding:21px 22px;margin:0 0 22px;background:var(--paper-soft);border-radius:var(--r-sm)}
+    .data-callout strong{font-size:.84rem;color:var(--ink)}
+    .data-callout p{font-size:.8rem;color:var(--muted);margin:0}
+    .data-gap{border:1px solid var(--rule);border-radius:var(--r-sm);padding:18px 20px}
+    .data-gap h3{font-size:.95rem;margin-bottom:12px}
+    .data-gap ul{padding-left:18px;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;color:var(--muted);font-size:.77rem}
+    .data-gap li strong{color:var(--ink);font-weight:500}
+    .mechanics{margin-top:24px;border-top:1px solid var(--rule)}
+    details{border-bottom:1px solid var(--rule);padding:14px 0}
+    summary{cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;list-style:none;color:var(--ink);font-size:.83rem;font-weight:600}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";font-family:var(--mono);font-size:1rem;font-weight:400;color:var(--muted)}
+    details[open] summary::after{content:"−"}
+    details p,details ul{max-width:950px;margin:12px 0 4px;color:var(--muted);font-size:.78rem}
+    details ul{padding-left:19px;display:grid;gap:7px}
+    .decision-box{display:grid;grid-template-columns:.72fr 1.28fr;gap:34px;padding:28px;background:var(--ink-strong);color:var(--on-dark);border-radius:var(--r-md)}
+    .decision-box .eyebrow{color:var(--on-dark);opacity:.72}
+    .decision-box h2{color:var(--on-dark);font-size:1.8rem}
+    .decision-list{list-style:none;padding:0;margin:0;display:grid;gap:0}
+    .decision-list li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--rule-strong);font-size:.82rem;line-height:1.45;color:var(--on-dark)}
+    .decision-list .stage-index{color:var(--on-dark);opacity:.72}
+    .decision-list strong{font-weight:600;color:var(--on-dark)}
+    .sources{background:var(--paper-soft)}
+    .source-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px;border-top:1px solid var(--rule-strong)}
+    .source-entry{padding:14px 0;border-bottom:1px solid var(--rule)}
+    .source-entry h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;margin:0 0 5px}
+    .source-entry p{font-size:.75rem;line-height:1.45;color:var(--muted);margin:0}
+    .source-entry .source-id{display:inline-block;margin-right:7px;color:var(--ink)}
+    .source-caveat{margin:20px 0 0;font-size:.75rem;color:var(--muted);max-width:900px}
+    .footer{border-top:1px solid var(--rule);padding:18px 0 30px;display:flex;justify-content:space-between;gap:20px;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.035em;color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1040px){
+      .hero{gap:34px}.flow-row{grid-template-columns:minmax(120px,.78fr) 22px minmax(290px,1.7fr) 22px minmax(125px,.82fr) 22px minmax(125px,.8fr);gap:7px}
+      .flow-node{padding:11px}.diagram{padding:18px}.parallel-node{font-size:.67rem}.meeting-flow{gap:6px}
+    }
+    @media(max-width:840px){
+      .wrap{width:min(var(--measure),calc(100% - 40px))}.hero{grid-template-columns:1fr;gap:28px;padding:48px 0 38px}.hero-figure{max-width:680px}.hero-figure img{height:350px}
+      .review-band{grid-template-columns:1fr;gap:8px}.section-head{grid-template-columns:1fr;gap:13px}.foundation{grid-template-columns:1fr;gap:16px}.foundation-items{gap:12px}
+      .journey-five,.journey-four{grid-template-columns:1fr 1fr;row-gap:16px}.journey li{min-height:122px;padding-right:16px}.journey li:nth-child(2n)::after{display:none}
+      .flow-row{grid-template-columns:1fr;gap:8px}.flow-arrow{transform:rotate(90deg);height:16px;line-height:16px}.flow-node{min-height:unset;padding:13px}.parallel-zone{max-width:none}
+      .meeting-flow{grid-template-columns:1fr;gap:7px}.meeting-flow .flow-node{min-height:unset}.meeting-flow .flow-arrow{height:12px}
+      .compile-layout,.report-columns,.split,.next-layout{grid-template-columns:1fr}.report-aside{border-left:0;border-top:1px solid var(--rule);padding:16px 0 0}.split-image{order:1}.split-copy{order:0}
+      .boundary,.data-callout{grid-template-columns:1fr;gap:8px}.decision-box{grid-template-columns:1fr;gap:20px}
+    }
+    @media(max-width:600px){
+      .wrap{width:calc(100% - 32px)}.topbar-inner{align-items:flex-start;padding:14px 0;min-height:unset}.topbar-note{max-width:120px;font-size:.57rem}
+      .brand img{width:88px}.brand{gap:11px}.brand-copy{padding-left:11px}.brand-copy strong{font-size:.74rem}.brand-copy span{font-size:.56rem}
+      h1{font-size:2.8rem}.hero-deck{font-size:1rem}.hero-figure img{height:250px}.hero-meta{display:grid;gap:7px}
+      .review-band{padding:18px}.review-band p{font-size:.96rem}.section{padding:42px 0}.review-grid{grid-template-columns:1fr}.review-point,.review-point + .review-point{padding:14px 0;border-left:0;border-bottom:1px solid var(--rule)}.review-point:last-child{border-bottom:0}
+      .foundation-items{grid-template-columns:1fr}.foundation-item{padding:8px 0 0 12px}.journey-five,.journey-four{grid-template-columns:1fr 1fr;row-gap:16px}.journey li{min-height:118px;padding-right:14px}
+      .diagram{padding:14px}.diagram-heading{display:grid;gap:8px}.diagram-heading .meta{text-align:left;white-space:normal}.parallel-list{grid-template-columns:1fr}
+      .role-table,.role-table tbody,.role-table tr,.role-table td{display:block;width:100%}.role-table thead{position:absolute;left:-9999px}.role-table tr{padding:11px 0;border-top:1px solid var(--rule)}.role-table td{padding:4px 0;border:0}.role-table td:first-child,.role-table td:nth-child(2){width:auto}.role-table td::before{content:attr(data-label);display:block;margin:0 0 2px;font-family:var(--mono);font-size:.58rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+      .progress-frame{padding:15px}.evidence-list li{grid-template-columns:1fr auto;gap:5px 12px}.evidence-list p{grid-column:1/-1;grid-row:2}.evidence-list .status-word{grid-column:2;grid-row:1}.report-shell{padding:16px}.report-top{flex-direction:column}.demo-stamp{align-self:flex-start}.bar-row{grid-template-columns:72px minmax(50px,1fr) 54px}.metric-pairs{gap:8px}
+      .split-image img,.next-image img{height:245px}.meeting-flow-list{grid-template-columns:1fr 1fr}.meeting-flow-list li{padding:12px 10px 12px 0}.meeting-flow-list li + li{padding-left:10px}.meeting-flow-list li:nth-child(3){border-left:0;padding-left:0;border-top:1px solid var(--rule)}.meeting-flow-list li:nth-child(4){border-top:1px solid var(--rule)}
+      .data-gap ul,.source-list{grid-template-columns:1fr}.decision-box{padding:20px}.footer{flex-direction:column;gap:8px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{
+      .topbar{position:static}.topbar-inner{min-height:56px}.wrap{width:100%;max-width:none}.hero{padding:28px 0}.hero-figure img{height:270px}
+      .section{padding:28px 0;break-inside:avoid}.journey-phase,.diagram,.report-shell,.decision-box,.source-entry,.split{break-inside:avoid}
+      .sources{background:var(--paper)}a{text-decoration:none}.topbar-note{color:var(--ink)}details:not([open]) > *:not(summary){display:block}
+    }
+  </style>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to report</a>
+  <header class="topbar">
+    <div class="topbar-inner wrap">
+      <div class="brand">
+        <img src="assets/images/fin9-logo.png" alt="Fin9">
+        <div class="brand-copy"><strong>by C3aLabs</strong><span>Aura experience report</span></div>
+      </div>
+      <div class="topbar-note">Internal concept review<br>9 October 2026</div>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="report-title">
+      <div>
+        <p class="eyebrow">Fin9 / Aura · Internal storyboard report</p>
+        <h1 id="report-title">One request becomes a meeting brief Priya can use</h1>
+        <p class="hero-deck">Aura carries a client meeting from Priya’s first sentence through evidence gathering, a cited brief, the conversation, and advisor-reviewed follow-up.</p>
+        <div class="hero-meta">
+          <span><strong>For review:</strong> Product, design, and engineering stakeholders</span>
+          <span><strong>Story:</strong> 8 beats · 6 specialist roles</span>
+          <span><strong>Scope:</strong> Concept, not a verified live workflow</span>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/images/priya-before.png" alt="Advisor reviewing client meeting materials at her desk">
+        <figcaption>Priya is the central character. Aura makes her preparation visible and easier to review.</figcaption>
+      </figure>
+    </section>
+
+    <nav class="report-nav" aria-label="Report contents">
+      <a href="#review">Readout</a><a href="#journey">Journey</a><a href="#plan">Plan</a><a href="#activity">Progress</a><a href="#synthesis">Synthesis</a><a href="#brief">Brief</a><a href="#meeting">Meeting</a><a href="#evidence-gaps">Evidence gaps</a><a href="#decision">Decision</a><a href="#sources">Sources</a>
+    </nav>
+
+    <aside class="review-band" aria-label="Recommended story position">
+      <p class="eyebrow">Story position</p>
+      <p>Show a coordinated preparation workflow that keeps Priya in control. The differentiator is the visible path from one request to cited evidence and reviewed follow-through.</p>
+    </aside>
+
+    <section class="section" id="review" aria-labelledby="review-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Executive readout</p><h2 id="review-title">The concept is ready for a narrative and workflow review</h2></div>
+        <p>Use this review to align on the story, the data needed for a credible demo, and the controls that must remain visible.</p>
+      </div>
+      <div class="review-grid">
+        <div class="review-point"><span class="stage-index">01 / Narrative</span><p><strong>One sentence starts the work.</strong> Aura acknowledges Priya, shows its plan, and brings together evidence before drafting.</p></div>
+        <div class="review-point"><span class="stage-index">02 / Evidence</span><p><strong>Four analysis passes run in parallel.</strong> Advisor Recommendations follow the findings; the briefing links each example claim to a source entry.</p></div>
+        <div class="review-point"><span class="stage-index">03 / Control</span><p><strong>The advisor stays responsible.</strong> Meeting work starts after the conversation. CRM updates and follow-up messages stay drafts for Priya to review.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="journey" aria-labelledby="journey-title">
+      <div class="section-head">
+        <div><p class="eyebrow">The journey</p><h2 id="journey-title">Preparation, meeting, and follow-up form one story</h2></div>
+        <p>The experience moves from context already in place to a prepared brief, a client conversation, and an advisor-approved next step.</p>
+      </div>
+
+      <div class="journey-phase" aria-label="Experience sequence, stages zero through four">
+        <div class="phase-title"><span class="mono">00–04</span><h3>From context to parallel work</h3></div>
+        <ol class="journey journey-five">
+          <li><span class="journey-number" aria-hidden="true">0</span><span class="stage-index">Foundation</span><strong>Context already in place</strong><span>Advisor profile, preferences, memory, and connected records inform the work.</span></li>
+          <li><span class="journey-number" aria-hidden="true">1</span><span class="stage-index">The ask</span><strong>One sentence</strong><span>“Prepare me for tomorrow’s meeting with Mr. Sharma.”</span></li>
+          <li><span class="journey-number" aria-hidden="true">2</span><span class="stage-index">Acknowledgement</span><strong>Personal response</strong><span>Aura restates the goal and sets a short time expectation.</span></li>
+          <li><span class="journey-number" aria-hidden="true">3</span><span class="stage-index">The plan</span><strong>Specialists assembled</strong><span>Priya sees the six roles and which work depends on earlier findings.</span></li>
+          <li><span class="journey-number" aria-hidden="true">4</span><span class="stage-index">Parallel execution</span><strong>Evidence work in progress</strong><span>Four analyses run together, with status and tool activity visible.</span></li>
+        </ol>
+      </div>
+
+      <div class="foundation" aria-label="Inputs represented by the foundation stage">
+        <div><p class="eyebrow">Stage 0 inputs</p><h3>Personal context shapes the plan</h3></div>
+        <div class="foundation-items">
+          <div class="foundation-item"><strong>Advisor profile</strong><span>Read-only user_profile with Priya’s role, preferences, firm, and chosen apps</span></div>
+          <div class="foundation-item"><strong>Memory and lessons</strong><span>Mem0 memories and COS lessons provide prior context, as described in the source brief</span></div>
+          <div class="foundation-item"><strong>Connected records</strong><span>Portfolio, CRM, and documents available to the configured workflow</span></div>
+        </div>
+      </div>
+
+      <div class="journey-phase" aria-label="Experience sequence, stages five through eight">
+        <div class="phase-title"><span class="mono">05–08</span><h3>From synthesis to the next step</h3></div>
+        <ol class="journey journey-four" start="5">
+          <li><span class="journey-number" aria-hidden="true">5</span><span class="stage-index">The compile</span><strong>Connect the findings</strong><span>Aura links market, portfolio, risk, and goal evidence before recommendations.</span></li>
+          <li><span class="journey-number" aria-hidden="true">6</span><span class="stage-index">The deliverable</span><strong>Cited meeting brief</strong><span>Priya gets the verdict, comparisons, discussion priorities, and sources.</span></li>
+          <li><span class="journey-number" aria-hidden="true">7</span><span class="stage-index">Meeting execution</span><strong>Capture the conversation</strong><span>After the client meeting, record decisions and prepare updates for review.</span></li>
+          <li><span class="journey-number" aria-hidden="true">8</span><span class="stage-index">The next step</span><strong>Ready for what’s next</strong><span>Priya reviews any follow-up draft and decides whether to proceed.</span></li>
+        </ol>
+      </div>
+      <p class="source-note">The source brief describes Priya’s firm and client context as profile and connected-record inputs. No actual firm profile, client export, or live data source was attached, so this report labels scenario details as illustrative.</p>
+    </section>
+
+    <section class="section" id="plan" aria-labelledby="plan-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Orchestration</p><h2 id="plan-title">Four evidence streams feed recommendations and the brief</h2></div>
+        <p>The diagram shows the intended dependency order. The source brief describes up to five concurrent tasks; this example uses four parallel analyses before recommendations. <a href="#src-5">[5]</a></p>
+      </div>
+
+      <figure class="diagram" aria-labelledby="prep-diagram-title">
+        <div class="diagram-heading">
+          <div><h3 id="prep-diagram-title">How the preparation request becomes a cited report</h3><p>Parallel evidence work stays separate until it is ready to inform advisor discussion.</p></div>
+          <span class="meta">Preparation path</span>
+        </div>
+        <div class="flow-row">
+          <div class="flow-node"><strong>Priya’s request + context</strong><span>Profile, preferences, connected records, and client review history</span></div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="parallel-zone">
+            <header><strong>Four parallel evidence passes</strong><span>Up to five concurrent tasks [5]</span></header>
+            <div class="parallel-list">
+              <div class="parallel-node"><strong>Market Intelligence</strong><span>Market + sectors</span></div>
+              <div class="parallel-node"><strong>Portfolio Intelligence</strong><span>Returns + drivers</span></div>
+              <div class="parallel-node"><strong>Risk Intelligence</strong><span>Exposure + change</span></div>
+              <div class="parallel-node"><strong>Financial Planning Intelligence</strong><span>Goal path</span></div>
+            </div>
+          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-node"><strong>Advisor Recommendations</strong><span>Prioritized discussion points after evidence</span></div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <div class="flow-node focal"><strong>Cited meeting brief</strong><span>Verdict, numbers, priorities, and sources</span></div>
+        </div>
+        <figcaption class="diagram-caption">Solid arrows show the primary preparation path. Meeting Execution is intentionally outside this path because it waits for the client conversation.</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table class="role-table">
+          <caption>Six specialist roles and the evidence each is meant to return</caption>
+          <thead><tr><th scope="col">Specialist</th><th scope="col">Question it answers</th><th scope="col">Scenario evidence shown</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Specialist">Market Intelligence</td><td data-label="Question">How did Indian markets and sectors move since the prior review?</td><td data-label="Example output">Market move: +2.3% (illustrative). Sector leaders and laggards need a source feed. <a href="#src-1">[1]</a></td></tr>
+            <tr><td data-label="Specialist">Portfolio Intelligence</td><td data-label="Question">How did the portfolio compare with its benchmark, and what drove returns?</td><td data-label="Example output">Portfolio +2.8% vs benchmark +2.5% (illustrative). Attribution details were not supplied. <a href="#src-2">[2]</a></td></tr>
+            <tr><td data-label="Specialist">Risk Intelligence</td><td data-label="Question">What changed in concentration, volatility, drawdown exposure, and risk-adjusted return?</td><td data-label="Example output">Financials concentration: 31% vs 24% (illustrative). Other risk measures need data. <a href="#src-3">[3]</a></td></tr>
+            <tr><td data-label="Specialist">Financial Planning Intelligence</td><td data-label="Question">Did market changes affect the likelihood of meeting a goal?</td><td data-label="Example output">Education goal estimate: 68% to 74% (illustrative); model assumptions need validation. <a href="#src-4">[4]</a></td></tr>
+            <tr><td data-label="Specialist">Advisor Recommendations</td><td data-label="Question">What should Priya prioritize in the discussion?</td><td data-label="Example output">Confirm goal assumptions; review concentration; agree any action with the client.</td></tr>
+            <tr><td data-label="Specialist">Meeting Execution</td><td data-label="Question">What did the client decide, and what follow-up is needed?</td><td data-label="Example output">Capture discussion; prepare CRM and follow-up drafts for Priya’s approval.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="activity" aria-labelledby="activity-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Visible work</p><h2 id="activity-title">Progress should show who is working and what each pass found</h2></div>
+        <p>This concept snapshot puts role, finding, and state together. It is an illustrative interface state, not a record of a real run.</p>
+      </div>
+      <div class="progress-frame" aria-label="Illustrative specialist progress and outputs">
+        <div class="frame-head"><div><strong>Preparing the review for Mr. Sharma</strong><p>Priya · preferred apps in the example: Zoho CRM and Excel</p></div><span class="status-word">Concept snapshot</span></div>
+        <ul class="evidence-list">
+          <li><strong>Market Intelligence</strong><p>Indian market +2.3%; sector comparison awaits a market source.</p><span class="status-word">Complete</span></li>
+          <li><strong>Portfolio Intelligence</strong><p>Portfolio +2.8% against benchmark +2.5%; attribution awaits holdings data.</p><span class="status-word">Complete</span></li>
+          <li><strong>Risk Intelligence</strong><p>Financials concentration 31%, compared with 24% at the prior review.</p><span class="status-word">Complete</span></li>
+          <li><strong>Financial Planning Intelligence</strong><p>Education goal estimate changes from 68% to 74%; assumptions need confirmation.</p><span class="status-word">Complete</span></li>
+          <li><strong>Advisor Recommendations</strong><p>Build discussion priorities after the four evidence passes finish.</p><span class="status-word">Waiting</span></li>
+          <li><strong>Meeting Execution</strong><p>Wait for the real conversation before capturing decisions or drafting updates.</p><span class="status-word">After meeting</span></li>
+        </ul>
+        <span class="concept-label">Illustrative interface · sample values · not live activity</span>
+        <p class="source-note">The concept can show a Stop control while work is active. The source brief says stopping cancels subtasks and billing; validate both behaviors before demonstrating them. <a href="#src-5">[5]</a></p>
+      </div>
+    </section>
+
+    <section class="section" id="synthesis" aria-labelledby="synthesis-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Synthesis</p><h2 id="synthesis-title">The brief connects evidence instead of repeating it</h2></div>
+        <p>Market performance matters only when linked to the client’s portfolio, risk changes, and stated goals.</p>
+      </div>
+      <div class="compile-layout">
+        <div class="evidence-chain" aria-label="Evidence inputs to the illustrative synthesis">
+          <div class="chain-item"><strong>Market movement</strong><span>+2.3% <a href="#src-1">[1]</a></span></div>
+          <div class="chain-item"><strong>Portfolio vs benchmark</strong><span>+0.3 pp <a href="#src-2">[2]</a></span></div>
+          <div class="chain-item"><strong>Financials concentration</strong><span>31% vs 24% <a href="#src-3">[3]</a></span></div>
+          <div class="chain-item"><strong>Education goal estimate</strong><span>68% → 74% <a href="#src-4">[4]</a></span></div>
+        </div>
+        <div class="compile-output">
+          <div><span class="mono">Example synthesis</span><h3>Lead with the goal and the exposure change</h3><p>The sample portfolio is ahead of its benchmark. Financials concentration has risen since the prior review. Confirm the education goal assumptions before discussing whether any portfolio action is appropriate.</p></div>
+          <footer>Each number links to an illustrative source entry below. Underlying source files were not provided.</footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="brief" aria-labelledby="brief-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Report experience</p><h2 id="brief-title">The advisor brief leads with the conclusion and keeps evidence close</h2></div>
+        <p>The report specimen combines a verdict, readable comparisons, risk and goal signals, prioritized discussion, and a linked source list.</p>
+      </div>
+      <div class="report-shell" aria-label="Illustrative client meeting report specimen">
+        <div class="report-top">
+          <div><p class="mono">Fin9 / Aura · client review brief</p><h3>Mr. Sharma · meeting preparation</h3><p>Review period and source dates to be populated from connected records.</p></div>
+          <span class="demo-stamp">Illustrative data</span>
+        </div>
+        <p class="verdict"><strong>Verdict:</strong> The example portfolio is 0.3 percentage points ahead of its benchmark. Review the increase in Financials concentration and confirm whether the education goal assumptions still fit before discussing a portfolio action. <a href="#src-2">[2]</a> <a href="#src-3">[3]</a> <a href="#src-4">[4]</a></p>
+        <div class="report-columns">
+          <div>
+            <p class="report-label">Performance comparison · example values</p>
+            <div class="bar-list" role="img" aria-label="Illustrative returns: market plus 2.3 percent, portfolio plus 2.8 percent, benchmark plus 2.5 percent">
+              <div class="bar-row"><span>Market</span><div class="bar-track" aria-hidden="true"><div class="bar-fill secondary" style="width:82%"></div></div><output>+2.3%</output></div>
+              <div class="bar-row"><span>Portfolio</span><div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:100%"></div></div><output>+2.8%</output></div>
+              <div class="bar-row"><span>Benchmark</span><div class="bar-track" aria-hidden="true"><div class="bar-fill secondary" style="width:89%"></div></div><output>+2.5%</output></div>
+            </div>
+            <div class="metric-pairs">
+              <div class="metric"><strong>31% / 24%</strong><span>Financials concentration now / prior review · [3]</span></div>
+              <div class="metric"><strong>68% → 74%</strong><span>Education goal estimate · [4]</span></div>
+            </div>
+            <p class="risk-missing">Volatility, drawdown exposure, risk-adjusted returns, sector performance, and portfolio attribution are part of the intended brief but need underlying data before they can be shown.</p>
+          </div>
+          <aside class="report-aside">
+            <p class="report-label">In this brief</p>
+            <ol class="toc-list">
+              <li><a href="#review">01 / Executive summary</a></li>
+              <li><a href="#brief">02 / Portfolio and market</a></li>
+              <li><a href="#brief">03 / Risk and goals</a></li>
+              <li><a href="#brief">04 / Discussion priorities</a></li>
+              <li><a href="#sources">05 / Sources and assumptions</a></li>
+            </ol>
+            <div class="report-priorities"><p class="report-label">Discussion priorities</p><ol>
+              <li>Confirm the education goal assumptions <a href="#src-4">[4]</a></li>
+              <li>Review the change in Financials concentration <a href="#src-3">[3]</a></li>
+              <li>Agree any portfolio action with the client <a href="#src-2">[2]</a></li>
+            </ol></div>
+            <div class="source-mini"><strong>Evidence references</strong><span><a href="#src-1">[1]</a> Market snapshot · demo</span><span><a href="#src-2">[2]</a> Portfolio extract · demo</span><span><a href="#src-3">[3]</a> Risk snapshot · demo</span><span><a href="#src-4">[4]</a> Goal model · demo</span><span><a href="#src-5">[5]</a> Product and workflow brief</span></div>
+          </aside>
+        </div>
+        <span class="concept-label">Report specimen · not an actual client record</span>
+      </div>
+    </section>
+
+    <section class="section" id="meeting" aria-labelledby="meeting-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Meeting execution</p><h2 id="meeting-title">The loop closes after the client conversation</h2></div>
+        <p>Meeting Execution captures what happened and prepares follow-up work. It does not take the place of Priya’s review or decision.</p>
+      </div>
+      <div class="split">
+        <div class="split-copy">
+          <h3>Priya discusses the brief with Mr. Sharma</h3>
+          <p>The meeting changes the context. Aura can capture the discussion, reflect agreed priorities in a CRM draft, and prepare proposed next actions. Priya reviews each item before it is recorded or sent.</p>
+          <p class="source-note">Zoho CRM is the example preferred app in the storyboard. Confirm the actual integration and available write permissions before presenting this as a working flow.</p>
+        </div>
+        <figure class="split-image"><img src="assets/images/client-meeting.png" alt="Advisor and client reviewing a financial planning brief across a meeting table"><figcaption>Meeting scene · generated grayscale concept image</figcaption></figure>
+      </div>
+      <ol class="meeting-flow-list" aria-label="Post-meeting review path">
+        <li><strong>1 / Conversation</strong><span>Priya and Mr. Sharma discuss the brief.</span></li>
+        <li><strong>2 / Capture</strong><span>Meeting Execution records the discussion.</span></li>
+        <li><strong>3 / Prepare</strong><span>CRM note and follow-up actions stay drafts.</span></li>
+        <li><strong>4 / Advisor review</strong><span>Priya approves, edits, or rejects each draft.</span></li>
+      </ol>
+      <div class="boundary"><strong>Visible control boundary</strong><p>No CRM update or client message is shown as automatically saved or sent. The source brief requires advisor approval before updates leave draft state.</p></div>
+    </section>
+
+    <section class="section" id="next-step" aria-labelledby="next-title">
+      <div class="section-head">
+        <div><p class="eyebrow">The close</p><h2 id="next-title">End with Priya choosing what happens next</h2></div>
+        <p>The final moment stays quiet. The assistant offers one useful continuation and leaves the choice with the advisor.</p>
+      </div>
+      <div class="next-layout">
+        <figure class="next-image"><img src="assets/images/priya-ready.png" alt="Advisor returning to her desk after preparing for a client meeting"><figcaption>Priya remains the focus of the final frame · generated grayscale concept image</figcaption></figure>
+        <div class="offer">
+          <p class="eyebrow">Aura / Follow-up</p>
+          <h3>“Want me to draft the follow-up email?”</h3>
+          <p class="muted">The offer continues the workflow without implying the message is already written or sent.</p>
+          <div class="offer-actions" aria-label="Illustrative follow-up choices"><span class="primary">Yes, draft it</span><span>Not now</span></div>
+          <p class="offer-note">Concept interaction only. Priya reviews the draft before sending.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="evidence-gaps" aria-labelledby="gaps-title">
+      <div class="section-head">
+        <div><p class="eyebrow">Evidence and assumptions</p><h2 id="gaps-title">The sample makes the story concrete; it does not stand in for client data</h2></div>
+        <p>The attached brief contains example values but no underlying portfolio file, market feed, risk snapshot, or goal-model output.</p>
+      </div>
+      <div class="data-callout"><strong>Scenario data status</strong><p>Every firm, client record, date, metric, and source entry in this storyboard is illustrative or a product assumption. Replace the demo values with approved synthetic data and resolvable sources before a product demonstration. Do not treat them as Mr. Sharma’s real portfolio facts.</p></div>
+      <div class="data-gap">
+        <h3>What the next demo needs to make the story verifiable</h3>
+        <ul>
+          <li><strong>Market:</strong> review window, index return, leading and lagging sectors, and source links.</li>
+          <li><strong>Portfolio:</strong> holdings, benchmark, returns, and contribution by holding or sector.</li>
+          <li><strong>Risk:</strong> concentration, volatility, drawdown exposure, and risk-adjusted return with prior values.</li>
+          <li><strong>Goals:</strong> probability method, assumptions, and what changed between 68% and 74%.</li>
+          <li><strong>Meeting:</strong> an agreed sample discussion and the CRM fields / draft actions it should produce.</li>
+          <li><strong>Sources:</strong> durable links or source IDs for every number that appears in the brief.</li>
+        </ul>
+      </div>
+      <div class="mechanics">
+        <details>
+          <summary>Product mechanics described in the source brief — validate before presenting as live behavior</summary>
+          <p>The source brief describes a multi-step request classified as complex, planned on the user’s selected model, and split into dependency-aware tasks. Builder agents are preferred when they fit; up to five tasks can run concurrently. The final report streams from the selected model using its declared output ceiling. <a href="#src-5">[5]</a></p>
+          <ul>
+            <li>The brief says the read-only user_profile, Mem0 memories, COS lessons, and connected app context are included in agent prompts. Confirm what data is actually available to each task.</li>
+            <li>The brief says stopping a run cancels subagents and stops billing. Confirm cancellation and billing behavior before showing this as a guarantee.</li>
+            <li>The brief describes a shared cached system prompt across specialist tasks. This is an implementation note, not a user-facing proof point.</li>
+            <li>Interactive contents, expandable sections, evidence-linked charts, export, and follow-up offers are intended report behaviors; validate each in the product build.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="decision" aria-labelledby="decision-title">
+      <div class="decision-box">
+        <div><p class="eyebrow">Suggested review outcome</p><h2 id="decision-title">Align on the story before the demo is built</h2></div>
+        <ol class="decision-list">
+          <li><span class="stage-index">01</span><span><strong>Approve the sequence:</strong> request → plan → parallel evidence → cited brief → meeting → advisor-reviewed follow-up.</span></li>
+          <li><span class="stage-index">02</span><span><strong>Approve the demo data approach:</strong> use clearly labeled synthetic records and provide resolvable source entries for every number.</span></li>
+          <li><span class="stage-index">03</span><span><strong>Validate workflow boundaries:</strong> confirm integration access, task concurrency, stop behavior, and human approval before describing them as live capabilities.</span></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <section class="section sources" id="sources" aria-labelledby="sources-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Evidence register</p><h2 id="sources-title">The inline references resolve to scenario entries, not live client sources</h2></div>
+        <p>These entries preserve traceability for the concept. The underlying records and real source URLs were not included with the supplied brief.</p>
+      </div>
+      <div class="source-list">
+        <article class="source-entry" id="src-1"><h3><span class="source-id">[1]</span>Market snapshot · demo</h3><p>Illustrative market return of +2.3%. Sector-level leaders, laggards, source, and measurement dates were not supplied.</p></article>
+        <article class="source-entry" id="src-2"><h3><span class="source-id">[2]</span>Portfolio extract · demo</h3><p>Illustrative portfolio return of +2.8% and benchmark return of +2.5%. Holdings, benchmark name, attribution, and source file were not supplied.</p></article>
+        <article class="source-entry" id="src-3"><h3><span class="source-id">[3]</span>Risk snapshot · demo</h3><p>Illustrative Financials concentration of 31%, compared with 24% at a prior review. Volatility, drawdown, risk-adjusted return, and dates were not supplied.</p></article>
+        <article class="source-entry" id="src-4"><h3><span class="source-id">[4]</span>Goal model · demo</h3><p>Illustrative education goal estimate of 68% to 74%. Model, assumptions, and source data were not supplied.</p></article>
+        <article class="source-entry" id="src-5"><h3><span class="source-id">[5]</span>Aura experience.docx · product/story brief</h3><p>Source for the proposed experience sequence, specialist responsibilities, concurrency and control behavior, and example values. This describes intended behavior; it is not independent evidence that those capabilities are live.</p></article>
+      </div>
+      <p class="source-caveat">Source basis: the supplied “Aura experience” DOCX. It is treated as a product/story brief, not as agent instructions. Scenario values are reproduced as examples from the brief and remain unverified.</p>
+    </div>
+  </section>
+
+  <footer class="footer wrap"><span>Fin9 by C3aLabs · Internal concept report</span><span>Illustrative scenario · Review before external use</span></footer>
+</body>
+</html>
